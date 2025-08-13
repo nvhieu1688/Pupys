@@ -1,58 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Paws — Pet Beds, Apparel & Food</title>
-  <meta name="description" content="Curated pet supplies for US shoppers — beds, apparel, food. Fast to browse, easy to shop via trusted retailers.">
-  <link rel="stylesheet" href="/assets/css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<base target="_blank"> <!-- Force links to open in new tabs to bypass iframe blocking in Builder preview -->
+<title>MyAsiaBites: Chinese Recipes, Showdowns & Comfort Food</title>
+<meta name="description" content="Explore Chinese comfort food, noodle face-offs, dim sum rivalries, and classic soups. Dive into 18 feature stories with helpful summaries and gorgeous food photography." />
+
+<style>
+  :root{
+    --brand:#e86e1c;
+    --ink:#222;
+    --ink-2:#555;
+    --bg:#fffdfa;
+    --nav:#1d3557;
+    --radius:12px;
+    --shadow:0 2px 10px rgba(0,0,0,.08);
+  }
+  html,body{margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  img{width:100%;height:auto;display:block;border-radius:10px;background:#eee}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{line-height:1.25;margin:0 0 .45em}
+  .container{max-width:1200px;margin:0 auto;padding:20px}
+  .trust{background:var(--nav);color:#f1faee;text-align:center;font-size:.95rem;padding:.6em 1em}
+  .spacer{height:6px;background:linear-gradient(90deg,var(--brand),#ffa45d)}
+
+  .grid{display:flex;flex-wrap:wrap;gap:24px}
+  .col-left{flex: 1 1 67%;min-width:320px}
+  .col-right{flex: 1 1 28%;min-width:260px}
+
+  .hero img{border-radius:14px;box-shadow:var(--shadow)}
+  .hero h1{font-size:2rem;color:var(--ink)}
+  .hero .dek{color:var(--ink-2)}
+
+  .latest h2{font-size:1.15rem;margin-bottom:.65em}
+  .latest .item{display:flex;gap:.7em;margin-bottom:1.05em}
+  .latest img{width:72px;height:72px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
+  .eyebrow{display:inline-block;font-size:.72rem;font-weight:700;color:#6b7280;background:#f0f0f0;border-radius:999px;padding:.18em .6em;margin-bottom:.3em}
+
+  .section-head{display:flex;align-items:center;justify-content:space-between;margin:28px 0 14px}
+  .section-head h2{font-size:1.35rem}
+  .see-all{font-size:.95rem}
+
+  .trending{background:#fffbf7;border:1px solid #ffe6d3;border-radius:14px;padding:14px}
+  .trend-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .trend-card img{aspect-ratio:1/1;object-fit:cover}
+  .trend-card h3{font-size:.95rem;margin-top:.4em}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:#fff;border-radius:14px;padding:12px;box-shadow:var(--shadow);transition:transform .15s ease}
+  .card:hover{transform:translateY(-3px)}
+  .card img{aspect-ratio:4/3;object-fit:cover}
+  .card h3{font-size:1.02rem;margin-top:.55em}
+  .card p{font-size:.92rem;color:var(--ink-2);margin:.25em 0 0}
+
+  @media (max-width:1000px){
+    .trend-grid{grid-template-columns:repeat(3,1fr)}
+    .cards{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:680px){
+    .grid{flex-direction:column}
+    .trend-grid{grid-template-columns:repeat(2,1fr)}
+    .cards{grid-template-columns:1fr}
+  }
+</style>
+
+<!-- JSON-LD ItemList -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"MyAsiaBites Articles",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"url":"/herbal-chicken-noodle-soup-the-secret-chinese-comfort-food-americans-are-missing-out-on"},
+    {"@type":"ListItem","position":2,"url":"/fish-maw-soup-royal-luxury-vs-cozy-homecooked-comfort"},
+    {"@type":"ListItem","position":3,"url":"/salt-and-pepper-spare-ribs-the-shocking-truth-behind-chinese-meat-dishes-and-how-to-make-them-restaurant-crispy-at-home"},
+    {"@type":"ListItem","position":4,"url":"/wonton-soup-showdown-grandmas-wisdom-vs-takeout-myths"},
+    {"@type":"ListItem","position":5,"url":"/biang-biang-noodles-vs-rice-dishes-the-food-chinese-never-stop-debating"},
+    {"@type":"ListItem","position":6,"url":"/har-gow-vs-siu-mai-the-untold-dim-sum-rivalry-that-will-blow-your-mind"},
+    {"@type":"ListItem","position":7,"url":"/xiao-long-bao-vs-tangbao-7-cultural-secrets-diy-stepbystep-recipe"},
+    {"@type":"ListItem","position":8,"url":"/cantonese-siu-mai-vs-northern-siew-mai-the-shocking-truth-of-chinese-dim-sum-dumplings"},
+    {"@type":"ListItem","position":9,"url":"/peking-duck-vs-pekin-duck-the-shocking-truth-epic-recipe-and-why-youre-eating-it-wrong"},
+    {"@type":"ListItem","position":10,"url":"/why-dan-dan-noodles-outshine-fried-rice-in-flavor-and-culture"},
+    {"@type":"ListItem","position":11,"url":"/zhajiangmian-vs-rice-the-battle-for-chinas-soul-in-a-bowl"},
+    {"@type":"ListItem","position":12,"url":"/why-kung-pao-chicken-isnt-what-you-think-and-why-thats-a-good-thing"},
+    {"@type":"ListItem","position":13,"url":"/west-lake-beef-soup-vs-hot-pot-the-chinese-comfort-food-battle-you-never-knew-you-needed"},
+    {"@type":"ListItem","position":14,"url":"/salt-and-pepper-shrimp-why-most-americans-get-it-wrong-and-how-to-do-it-right"},
+    {"@type":"ListItem","position":15,"url":"/lo-mein-vs-rice-noodles-vs-fried-rice-chinese-food-face-off"},
+    {"@type":"ListItem","position":16,"url":"/why-orange-chicken-isnt-chinese-and-why-thats-what-makes-it-brilliant"},
+    {"@type":"ListItem","position":17,"url":"/dryfried-beef-chow-fun-vs-takeout-unlock-the-smoky-wokhei-you-cant-get-in-a-restaurant"},
+    {"@type":"ListItem","position":18,"url":"/mongolian-beef-the-shocking-truth-behind-its-name-and-how-to-cook-the-real-version"}
+  ]
+}
+</script>
 </head>
 <body>
-<header>
-  <div class="container">
-    <strong>Happy Paws</strong>
-    <nav>
-      <a href="/index.html">Home</a> ·
-      <a href="/beds/index.html">Beds</a> ·
-      <a href="/apparel/index.html">Apparel</a> ·
-      <a href="/food/index.html">Food</a>
-    </nav>
-  </div>
-</header>
 
-<main class="container">
-  <section class="hero">
-    <h1>Best Pet Supplies — Beds · Apparel · Food</h1>
-    <p>Quick picks with short, honest notes. Browse categories below.</p>
-    <div class="disclosure">
-  <strong>Disclosure:</strong> This page contains affiliate links. As an Amazon Associate we earn from qualifying purchases.
+<div class="spacer"></div>
+<div class="trust">America’s #1 Trusted Asian Recipe Resource • 18 Feature Stories • Millions of readers</div>
+
+<div class="container grid">
+  <!-- LEFT -->
+  <div class="col-left">
+
+    <!-- HERO FEATURED -->
+    <section class="hero">
+      <a href="/herbal-chicken-noodle-soup-the-secret-chinese-comfort-food-americans-are-missing-out-on" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/herbal-chicken-noodle-soup-13-m7Vb4B31VMSa9GeZ.jpg" alt="Herbal Chinese chicken noodle soup with goji berries and red dates" />
+      </a>
+      <h1>
+        <a href="/herbal-chicken-noodle-soup-the-secret-chinese-comfort-food-americans-are-missing-out-on" rel="noopener">
+          Herbal Chicken Noodle Soup – The Secret Chinese Comfort Food Americans Are Missing Out On
+        </a>
+      </h1>
+      <p class="dek">Healing broth, goji berries, red dates, and a whisper of ginseng—the restorative soup every home cook should know.</p>
+    </section>
+
+    <!-- TRENDING NOW -->
+    <div class="section-head">
+      <h2>Trending Now</h2>
+      <a class="see-all" href="/authentic-chinese-recipes" rel="noopener">See more</a>
+    </div>
+    <section class="trending">
+      <div class="trend-grid">
+        <article class="trend-card">
+          <a href="/wonton-soup-showdown-grandmas-wisdom-vs-takeout-myths" rel="noopener">
+            <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/wonton-soup-showdown-9-m6Lbe0MjEKTGrzJy.jpg" alt="Wonton soup in clear broth" />
+            <h3>Wonton Soup Showdown</h3>
+          </a>
+        </article>
+        <article class="trend-card">
+          <a href="/fish-maw-soup-royal-luxury-vs-cozy-homecooked-comfort" rel="noopener">
+            <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/fish-maw-soup-9-m5Kn30BbBjFbBN5v.jpg" alt="Fish Maw Soup bowl" />
+            <h3>Fish Maw Soup</h3>
+          </a>
+        </article>
+        <article class="trend-card">
+          <a href="/why-dan-dan-noodles-outshine-fried-rice-in-flavor-and-culture" rel="noopener">
+            <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/dan-dan-noodles-12-mv0JvXG48Vijv1RM.jpg" alt="Dan Dan noodles" />
+            <h3>Dan Dan vs Fried Rice</h3>
+          </a>
+        </article>
+        <article class="trend-card">
+          <a href="/peking-duck-vs-pekin-duck-the-shocking-truth-epic-recipe-and-why-youre-eating-it-wrong" rel="noopener">
+            <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/peking-duck-3-m6Lb6lBRW0sv8Eov.jpg" alt="Peking duck slices" />
+            <h3>Peking Duck vs Pekin</h3>
+          </a>
+        </article>
+        <article class="trend-card">
+          <a href="/why-orange-chicken-isnt-chinese-and-why-thats-what-makes-it-brilliant" rel="noopener">
+            <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/orange-chicken-13-mjEGrjV3N7FZaWBx.jpg" alt="Orange chicken" />
+            <h3>Orange Chicken</h3>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="section-head">
+      <h2>Hot Meal, Cool Kitchen</h2>
+      <a class="see-all" href="/authentic-chinese-recipes" rel="noopener">Browse all</a>
+    </div>
+    <section class="cards">
+
+      <article class="card">
+        <a href="/biang-biang-noodles-vs-rice-dishes-the-food-chinese-never-stop-debating" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/biang-biang-noodles-4-mePJ8G03lLsKMln9.jpg" alt="Biang Biang noodles coated in chili oil" />
+        </a>
+        <h3><a href="/biang-biang-noodles-vs-rice-dishes-the-food-chinese-never-stop-debating" rel="noopener">Biang-Biang Noodles vs Rice Dishes</a></h3>
+        <p>Chewy ribbons, chili oil swagger—why noodles spark endless debate with rice.</p>
+      </article>
+
+      <article class="card">
+        <a href="/har-gow-vs-siu-mai-the-untold-dim-sum-rivalry-that-will-blow-your-mind" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/siew-mai-7-mv0JpEX4oMiBq08w.jpg" alt="Har Gow and Siu Mai in steamer" />
+        </a>
+        <h3><a href="/har-gow-vs-siu-mai-the-untold-dim-sum-rivalry-that-will-blow-your-mind" rel="noopener">Har Gow vs Siu Mai</a></h3>
+        <p>Shrimp translucence vs porky punch—dim sum’s most iconic rivalry, decoded.</p>
+      </article>
+
+      <article class="card">
+        <a href="/xiao-long-bao-vs-tangbao-7-cultural-secrets-diy-stepbystep-recipe" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/xiao-long-bao-13-A1a5vGQB7punav3B.jpg" alt="Xiao Long Bao soup dumplings" />
+        </a>
+        <h3><a href="/xiao-long-bao-vs-tangbao-7-cultural-secrets-diy-stepbystep-recipe" rel="noopener">Xiao Long Bao vs Tangbao</a></h3>
+        <p>Soup-filled marvels vs giant sips—7 cultural secrets and a DIY path.</p>
+      </article>
+
+      <article class="card">
+        <a href="/cantonese-siu-mai-vs-northern-siew-mai-the-shocking-truth-of-chinese-dim-sum-dumplings" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/siew-mai-5-YNq2jvLDezUpnr2k.jpg" alt="Cantonese and Northern siew mai" />
+        </a>
+        <h3><a href="/cantonese-siu-mai-vs-northern-siew-mai-the-shocking-truth-of-chinese-dim-sum-dumplings" rel="noopener">Cantonese Siu Mai vs Northern Siew Mai</a></h3>
+        <p>Two regions, two textures—what truly separates these beloved bites.</p>
+      </article>
+
+      <article class="card">
+        <a href="/peking-duck-vs-pekin-duck-the-shocking-truth-epic-recipe-and-why-youre-eating-it-wrong" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/peking-duck-3-m6Lb6lBRW0sv8Eov.jpg" alt="Crispy Peking duck" />
+        </a>
+        <h3><a href="/peking-duck-vs-pekin-duck-the-shocking-truth-epic-recipe-and-why-youre-eating-it-wrong" rel="noopener">Peking Duck vs Pekin Duck</a></h3>
+        <p>Name mix-ups, crisp skin truths, and how to nail the classic at home.</p>
+      </article>
+
+      <article class="card">
+        <a href="/why-dan-dan-noodles-outshine-fried-rice-in-flavor-and-culture" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/dan-dan-noodles-12-mv0JvXG48Vijv1RM.jpg" alt="Dan Dan noodles with chili oil" />
+        </a>
+        <h3><a href="/why-dan-dan-noodles-outshine-fried-rice-in-flavor-and-culture" rel="noopener">Why Dan Dan Noodles Outshine Fried Rice</a></h3>
+        <p>Spicy, numbing, savory depth—Sichuan’s icon wins on flavor and culture.</p>
+      </article>
+
+      <article class="card">
+        <a href="/zhajiangmian-vs-rice-the-battle-for-chinas-soul-in-a-bowl" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/zhajiangmian-18-YleQ16xMnKS7781E.jpg" alt="Zhajiangmian noodles" />
+        </a>
+        <h3><a href="/zhajiangmian-vs-rice-the-battle-for-chinas-soul-in-a-bowl" rel="noopener">Zha Jiang Mian vs Rice</a></h3>
+        <p>Bold soybean paste vs humble grains—why this duel matters to China’s palate.</p>
+      </article>
+
+      <article class="card">
+        <a href="/why-kung-pao-chicken-isnt-what-you-think-and-why-thats-a-good-thing" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/kung-pao-chicken-5-Aq2JrxabEjUWVyMw.jpg" alt="Kung Pao chicken stir-fry" />
+        </a>
+        <h3><a href="/why-kung-pao-chicken-isnt-what-you-think-and-why-thats-a-good-thing" rel="noopener">Why Kung Pao Chicken Isn’t What You Think</a></h3>
+        <p>The story behind the heat, tang, and crunch—beyond the takeout version you know.</p>
+      </article>
+
+      <article class="card">
+        <a href="/west-lake-beef-soup-vs-hot-pot-the-chinese-comfort-food-battle-you-never-knew-you-needed" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/west-lake-beef-soup-3-YBgbP72oQnSWnQxR.jpg" alt="West Lake beef soup close-up" />
+        </a>
+        <h3><a href="/west-lake-beef-soup-vs-hot-pot-the-chinese-comfort-food-battle-you-never-knew-you-needed" rel="noopener">West Lake Beef Soup vs Hot Pot</a></h3>
+        <p>Refined Hangzhou comfort vs fiery communal feast—two sides of coziness.</p>
+      </article>
+
+      <article class="card">
+        <a href="/salt-and-pepper-shrimp-why-most-americans-get-it-wrong-and-how-to-do-it-right" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/salt-and-pepper-shrimp-3-m7Vb1NBNzof4Oaox.jpg" alt="Salt and pepper shrimp with chiles" />
+        </a>
+        <h3><a href="/salt-and-pepper-shrimp-why-most-americans-get-it-wrong-and-how-to-do-it-right" rel="noopener">Salt and Pepper Shrimp</a></h3>
+        <p>Light, crackly, aromatic—how to nail the restaurant-style finish at home.</p>
+      </article>
+
+      <article class="card">
+        <a href="/lo-mein-vs-rice-noodles-vs-fried-rice-chinese-food-face-off" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/lo-mein-8-AQEZ5j3rJJip0NpQ.jpg" alt="Lo mein noodles with veggies" />
+        </a>
+        <h3><a href="/lo-mein-vs-rice-noodles-vs-fried-rice-chinese-food-face-off" rel="noopener">Lo Mein vs Rice Noodles vs Fried Rice</a></h3>
+        <p>Three takeout legends, one honest face-off—textures, sauces, and best use-cases.</p>
+      </article>
+
+      <article class="card">
+        <a href="/why-orange-chicken-isnt-chinese-and-why-thats-what-makes-it-brilliant" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/orange-chicken-13-mjEGrjV3N7FZaWBx.jpg" alt="Orange chicken glazed with citrus sauce" />
+        </a>
+        <h3><a href="/why-orange-chicken-isnt-chinese-and-why-thats-what-makes-it-brilliant" rel="noopener">Why Orange Chicken Isn’t Chinese</a></h3>
+        <p>It’s Chinese-American genius—here’s why that’s something to celebrate.</p>
+      </article>
+
+      <article class="card">
+        <a href="/dryfried-beef-chow-fun-vs-takeout-unlock-the-smoky-wokhei-you-cant-get-in-a-restaurant" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/beef-chow-fun-6-A0xj7BKx71C5346X.jpg" alt="Dry-fried beef chow fun" />
+        </a>
+        <h3><a href="/dryfried-beef-chow-fun-vs-takeout-unlock-the-smoky-wokhei-you-cant-get-in-a-restaurant" rel="noopener">Dry-Fried Beef Chow Fun vs Takeout</a></h3>
+        <p>Charring, the breath of the wok—and why restaurants rarely deliver it right.</p>
+      </article>
+
+      <article class="card">
+        <a href="/mongolian-beef-the-shocking-truth-behind-its-name-and-how-to-cook-the-real-version" rel="noopener">
+          <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/mongolian-beef-13-dOqDLObKDktg742x.jpg" alt="Mongolian beef with scallions" />
+        </a>
+        <h3><a href="/mongolian-beef-the-shocking-truth-behind-its-name-and-how-to-cook-the-real-version" rel="noopener">Mongolian Beef</a></h3>
+        <p>The real origin story—plus how to cook a balanced, glossy-sauce version.</p>
+      </article>
+    </section>
+  </div>
+
+  <!-- RIGHT: The Latest -->
+  <aside class="col-right latest" aria-label="The Latest">
+    <h2>The Latest</h2>
+
+    <div class="item">
+      <a href="/wonton-soup-showdown-grandmas-wisdom-vs-takeout-myths" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/wonton-soup-showdown-9-m6Lbe0MjEKTGrzJy.jpg" alt="Wonton Soup thumbnail" />
+      </a>
+      <div>
+        <div class="eyebrow">Soup</div>
+        <h3><a href="/wonton-soup-showdown-grandmas-wisdom-vs-takeout-myths" rel="noopener">Wonton Soup Showdown</a></h3>
+        <p class="excerpt">Grandma’s broth vs takeout myths.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <a href="/fish-maw-soup-royal-luxury-vs-cozy-homecooked-comfort" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/fish-maw-soup-9-m5Kn30BbBjFbBN5v.jpg" alt="Fish Maw Soup thumbnail" />
+      </a>
+      <div>
+        <div class="eyebrow">Soup</div>
+        <h3><a href="/fish-maw-soup-royal-luxury-vs-cozy-homecooked-comfort" rel="noopener">Fish Maw Soup</a></h3>
+        <p class="excerpt">Royal luxury meets cozy home comfort.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <a href="/salt-and-pepper-spare-ribs-the-shocking-truth-behind-chinese-meat-dishes-and-how-to-make-them-restaurant-crispy-at-home" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/salt-and-pepper-spare-ribs-7-YKblQKwVKBIVV2rz.jpg" alt="Salt and Pepper Spare Ribs thumbnail" />
+      </a>
+      <div>
+        <div class="eyebrow">Meat</div>
+        <h3><a href="/salt-and-pepper-spare-ribs-the-shocking-truth-behind-chinese-meet-dishes-and-how-to-make-them-restaurant-crispy-at-home" rel="noopener">Salt & Pepper Spare Ribs</a></h3>
+        <p class="excerpt">Restaurant-level crisp at home.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <a href="/west-lake-beef-soup-vs-hot-pot-the-chinese-comfort-food-battle-you-never-knew-you-needed" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/west-lake-beef-soup-3-YBgbP72oQnSWnQxR.jpg" alt="West Lake Beef Soup thumbnail" />
+      </a>
+      <div>
+        <div class="eyebrow">Soup</div>
+        <h3><a href="/west-lake-beef-soup-vs-hot-pot-the-chinese-comfort-food-battle-you-never-knew-you-needed" rel="noopener">West Lake Soup vs Hot Pot</a></h3>
+        <p class="excerpt">Two comfort legends, one debate.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <a href="/biang-biang-noodles-vs-rice-dishes-the-food-chinese-never-stop-debating" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/biang-biang-noodles-4-mePJ8G03lLsKMln9.jpg" alt="Biang Biang Noodles thumbnail" />
+      </a>
+      <div>
+        <div class="eyebrow">Noodles</div>
+        <h3><a href="/biang-biang-noodles-vs-rice-dishes-the-food-chinese-never-stop-debating" rel="noopener">Biang-Biang vs Rice</a></h3>
+        <p class="excerpt">Chew, chili, debate.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <a href="/why-orange-chicken-isnt-chinese-and-why-thats-what-makes-it-brilliant" rel="noopener">
+        <img src="https://assets.zyrosite.com/Yyv0gk0RgWf65j7L/orange-chicken-13-mjEGrjV3N7FZaWBx.jpg" alt="Orange Chicken thumbnail" />
+      </a>
+      <div>
+        <div class="eyebrow">Chicken</div>
+        <h3><a href="/why-orange-chicken-isnt-chinese-and-why-thats-what-makes-it-brilliant" rel="noopener">Orange Chicken</a></h3>
+        <p class="excerpt">Chinese-American brilliance.</p>
+      </div>
+    </div>
+  </aside>
 </div>
-
-  </section>
-
-  <h2>Categories</h2>
-  <div class="grid">
-    <a class="card" href="/beds/index.html">
-      <img src="/assets/images/beds/orthopedic-bed.png" alt="Orthopedic dog bed on a living room floor" width="1200" height="900" loading="lazy">
-      <h3>Beds</h3>
-      <p>Orthopedic, donut, cooling & more.</p>
-    </a>
-    <a class="card" href="/apparel/index.html">
-      <img src="/assets/images/apparel/winter-coat.png" alt="Dog winter coat on a hanger" width="1200" height="900" loading="lazy">
-      <h3>Apparel</h3>
-      <p>Raincoats, winter jackets, sweaters.</p>
-    </a>
-    <a class="card" href="/food/index.html">
-      <img src="/assets/images/food/organic-dry-food.png" alt="Organic dry pet food packaging" width="1200" height="900" loading="lazy">
-      <h3>Food</h3>
-      <p>High-protein, grain-free, treats.</p>
-    </a>
-  </div>
-</main>
-<footer>
-  <div class="container small">© <span id="y"></span> Happy Paws • <a href="/disclosure.html">Disclosure</a></div>
-</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 
 </body>
 </html>
